@@ -28,7 +28,7 @@ setTimeout(function () {
 
 	  setTimeout(function() {
 		console.log('Writing 0 on LinkLoss');
-		p.services[4].characteristics[0].write(new Buffer([0]), false);
+		p.services[3].characteristics[0].write(new Buffer([2]), false);
           }, 5000);
 
         });
