@@ -59,15 +59,6 @@ noble._bindings._gatts.fe97eb742fe5._aclStream.encrypt();
 sudo DEBUG=hci,bindings,smp,att,gap,l2cap NOBLE_REPORT_ALL_HCI_EVENTS=1 node wist-test2.js
 
 
-
-
-Ce qu'il manque encore :
-
- * Reconnection à partir du LTK
- * Gestion des réponses att
-
-
-
 var noble = require('../index');
 var p = noble._peripherals.fe97eb742fe5;
 p.connect(function (error) { console.log('connected', error); });
