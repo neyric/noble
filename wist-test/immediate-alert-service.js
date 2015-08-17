@@ -1,6 +1,7 @@
 var util = require('util'),
-  Characteristic = require('./characteristic'),
-  PrimaryService = require('./primary-service');
+  noble = require('../index'),
+  Characteristic = noble.ServerCharacteristic,
+  PrimaryService = noble.ServerPrimaryService;
 
 /**
  * Characteristic
@@ -11,12 +12,7 @@ function ImmediateAlertLevelCharacteristic() {
   ImmediateAlertLevelCharacteristic.super_.call(this, {
     uuid: '2A06',
     properties: ['writeWithoutResponse'],
-    descriptors: [
-      /*new bleno.Descriptor({
-        uuid: '2901',
-        value: 'Make me ring'
-      })*/
-    ]
+    descriptors: []
   });
 }
 
