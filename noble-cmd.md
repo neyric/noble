@@ -65,4 +65,9 @@ Ce qu'il manque encore :
 
  * Reconnection à partir du LTK
  * Gestion des réponses att
- 
+
+
+
+var noble = require('../index');
+var p = noble._peripherals.fe97eb742fe5;
+p.connect(function (error) { console.log('connected', error); });
