@@ -2,10 +2,6 @@
 var ImmediateAlertService = require('./immediate-alert-service');
 var immediateAlertService = new ImmediateAlertService();
 
-//noble._bindings.setServices([immediateAlertService]);
-
-
-
 var noble = require('../index')
 
 noble.onStateChange('poweredOn');
@@ -24,24 +20,23 @@ setTimeout(function () {
   }
 
   p.on('disconnect', function() { console.log('disconnect'); });
+  p.on('connect', function () {
+    noble._bindings._gatts.fe97eb742fe5.setServices([immediateAlertService]);
+  });
 
   p.connect(function (error) {
-
-      noble._bindings._gatts.fe97eb742fe5.setServices([immediateAlertService]);
 
       noble._bindings._gatts.fe97eb742fe5._aclStream.encrypt();
 
       setTimeout(function() {
+        p.discoverAllServicesAndCharacteristics(function (error, discoveredServices) {
 
-	p.discoverAllServicesAndCharacteristics(function (error, discoveredServices) {
-
-	  setTimeout(function() {
-		console.log('Writing 0 on LinkLoss');
-		p.services[3].characteristics[0].write(new Buffer([2]), false);
-          }, 5000);
+	         setTimeout(function() {
+		           console.log('Writing 0 on LinkLoss');
+		           p.services[3].characteristics[0].write(new Buffer([2]), false);
+           }, 5000);
 
         });
-
       }, 5000);
 
   });
